@@ -122,7 +122,7 @@ const ShowUsers = () => {
                 <div className='row mt-5'>
                     <div className='col-md-4 offset-md-4'>
                         <div className='d-grid mx-auto'>
-                            <button onClick={() => openModal(1)} className='btn btn-dark mt-4' data-bs-toggle='modal' data-bs-target='#modalUsers'>
+                            <button onClick={() => openModal(1)} className='btn btn-dark mt-5' data-bs-toggle='modal' data-bs-target='#modalUsers'>
                                 <i className='fa-solid fa-circle-plus'></i> Añadir
                             </button>
                         </div>

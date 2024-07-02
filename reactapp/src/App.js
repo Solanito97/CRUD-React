@@ -5,6 +5,8 @@ import ShowProducts from './components/ShowProducts';
 import ShowUsers from './components/ShowUsers';
 import Footer from './misc/Footer';
 import './App.css';
+import ShowProviders from './components/ShowProviders';
+import ShowInventory from './components/ShowInventory';
 
 
 function App() {
@@ -15,8 +17,10 @@ function App() {
         return <ShowUsers />;
       case 'ShowProducts':
         return <ShowProducts />; 
-      case 'showProveedores':
-        return <div>Proveedores</div>; 
+        case 'ShowInventory':
+          return <ShowInventory/>;
+      case 'ShowProviders':
+        return <ShowProviders/>;
       default:
         return <ShowUsers />;
     }
