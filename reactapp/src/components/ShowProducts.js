@@ -221,12 +221,12 @@ const ShowProducts = () => {
                             </div>
                             <div className='input-group mb-3'>
                                 <span className='input-group-text'><i className='fa-solid fa-user'></i></span>
-                                <input type='text' id='creado_por' className='form-control' placeholder='Creado por' value={creado_por}
+                                <input type='text' id='creado_por' className='form-control' placeholder='user id' value={creado_por}
                                     onChange={(e) => setCreadoPor(e.target.value)}></input>
                             </div>
                             <div className='input-group mb-3'>
                                 <span className='input-group-text'><i className='fa-regular fa-user'></i></span>
-                                <input type='text' id='modificado_por' className='form-control' placeholder='Modificado por' value={modificado_por}
+                                <input type='text' id='modificado_por' className='form-control' placeholder='user id' value={modificado_por}
                                     onChange={(e) => setModificadoPor(e.target.value)}></input>
                             </div>
                             <div className='d-grid col-6 mx-auto'>
