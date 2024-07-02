@@ -113,12 +113,22 @@ const ShowProducts = () => {
         const MySwal = withReactContent(Swal);
         MySwal.fire({
             title: '¿Seguro de eliminar el producto ' + nombre + ' ?',
-            icon: 'question', text: 'No se podrá dar marcha atrás',
-            showCancelButton: true, confirmButtonText: 'Si, eliminar', cancelButtonText: 'Cancelar'
+            icon: 'question', 
+            text: 'No se podrá dar marcha atrás',
+            showCancelButton: true, 
+            confirmButtonText: 'Si, eliminar', 
+            cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
                 setidProductos(idProductos);
-                enviarSolicitud('DELETE', { idProductos: idProductos });
+                axios.delete(url, { data: { idProductos: idProductos } })
+                    .then(response => {
+                        show_alerta('Producto eliminado correctamente', 'success');
+                        getProducts();
+                    })
+                    .catch(error => {
+                        show_alerta('Error al eliminar el producto', 'error');
+                    });
             } else {
                 show_alerta('El producto NO fue eliminado', 'info');
             }
@@ -128,10 +138,10 @@ const ShowProducts = () => {
     return (
         <div className='App'>
             <div className='container-fluid'>
-                <div className='row mt-3'>
+                <div className='row mt-5'>
                     <div className='col-md-4 offset-md-4'>
                         <div className='d-grid mx-auto'>
-                            <button onClick={() => openModal(1)} className='btn btn-dark' data-bs-toggle='modal' data-bs-target='#modalProducts'>
+                            <button onClick={() => openModal(1)} className='btn btn-dark mt-5' data-bs-toggle='modal' data-bs-target='#modalProducts'>
                                 <i className='fa-solid fa-circle-plus'></i> Añadir
                             </button>
                         </div>
@@ -142,7 +152,8 @@ const ShowProducts = () => {
                         <div className='table-responsive'>
                             <table className='table table-bordered'>
                                 <thead>
-                                    <tr><th>#</th><th>PRODUCTO</th><th>DESCRIPCION</th><th>PRECIO</th><th>PROVEEDOR</th><th>ESTADO</th><th>CREADO POR</th><th>MODIFICADO POR</th><th>ACCIONES</th></tr>
+                                    <tr><th>#</th><th>PRODUCTO</th><th>DESCRIPCION</th><th>PRECIO</th><th>PROVEEDOR</th>
+                                    <th>ESTADO</th><th>CREADO POR</th><th>MODIFICADO POR</th><th>ACCIONES</th></tr>
                                 </thead>
                                 <tbody className='table-group-divider'>
                                     {products.map((product, i) => (
@@ -190,11 +201,11 @@ const ShowProducts = () => {
                             </div>
                             <div className='input-group mb-3'>
                                 <span className='input-group-text'><i className='fa-solid fa-comment'></i></span>
-                                <input type='text' id='descripcion' className='form-control' placeholder='Descripción' value={descripcion}
+                                <input type='text' id='descripcion' className='form-control' placeholder='Descripcion' value={descripcion}
                                     onChange={(e) => setDescripcion(e.target.value)}></input>
                             </div>
                             <div className='input-group mb-3'>
-                                <span className='input-group-text'><i className='fa-solid fa-colon-sign'></i></span>
+                                <span className='input-group-text'><i className='fa-solid fa-money-bill-1-wave'></i></span>
                                 <input type='text' id='precio' className='form-control' placeholder='Precio' value={precio}
                                     onChange={(e) => setPrecio(e.target.value)}></input>
                             </div>
